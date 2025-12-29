@@ -1,0 +1,169 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+ package dsa;
+/**
+ *
+ * @author Savinthi Minaya
+ */
+ public class SinglyLinkedList {
+ /**
+     * @param args the command line arguments
+     */
+    
+        class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    Node head;
+
+    // Insert at beginning
+    void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Insert at end
+    void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+    }
+
+    // Insert at specific position 
+    void insertAtPosition(int data, int position) {
+        if (position <= 0) {
+            System.out.println("Invalid position");
+            return;
+        }
+
+        if (position == 1) {
+            insertAtBeginning(data);
+            return;
+        }
+
+        Node newNode = new Node(data);
+        Node temp = head;
+
+        for (int i = 1; i < position - 1; i++) {
+            if (temp == null) {
+                System.out.println("Position out of range");
+                return;
+            }
+            temp = temp.next;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+    // Delete from beginning
+    void deleteFromBeginning() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        head = head.next;
+    }
+
+    // Delete from end
+    void deleteFromEnd() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+    }
+
+    // Delete from specific position (1-based index)
+    void deleteFromPosition(int position) {
+        if (head == null || position <= 0) {
+            System.out.println("Invalid operation");
+            return;
+        }
+
+        if (position == 1) {
+            deleteFromBeginning();
+            return;
+        }
+
+        Node temp = head;
+        for (int i = 1; i < position - 1; i++) {
+            if (temp.next == null) {
+                System.out.println("Position out of range");
+                return;
+            }
+            temp = temp.next;
+        }
+
+        if (temp.next == null) {
+            System.out.println("Position out of range");
+            return;
+        }
+
+        temp.next = temp.next.next;
+    }
+
+    // Display list
+    void display() {
+        Node temp = head;
+        System.out.print("List: ");
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+         // TODO code application logic here
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.insertAtEnd(10);
+        list.insertAtEnd(20);
+        list.insertAtEnd(30);
+        list.display();
+
+        list.insertAtBeginning(5);
+        list.display();
+
+        list.insertAtPosition(15, 3);
+        list.display();
+
+        list.deleteFromBeginning();
+        list.display();
+
+        list.deleteFromEnd();
+        list.display();
+
+        list.deleteFromPosition(2);
+        list.display();
+    }
+}
