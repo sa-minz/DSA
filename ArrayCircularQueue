@@ -60,7 +60,7 @@ public class ArrayCircularQueue {
 
     public static void main(String[] args) {
         // TODO code application logic here
-                ArrayCircularQueue q = new ArrayCircularQueue(5);
+        ArrayCircularQueue q = new ArrayCircularQueue(5);
 
         q.enqueue(10);
         q.enqueue(20);
