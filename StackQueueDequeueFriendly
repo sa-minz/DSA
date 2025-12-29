@@ -1,0 +1,59 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package dsa;
+
+import java.util.Stack;
+
+/**
+ *
+ * @author Savinthi Minaya
+ */
+public class StackQueueDequeueFriendly {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    Stack<Integer> s1 = new Stack<>();
+    Stack<Integer> s2 = new Stack<>();
+
+    // ENQUEUE (O(n))
+    void enqueue(int x) {
+        while (!s1.isEmpty()) {
+            s2.push(s1.pop());
+        }
+
+        s1.push(x);
+        System.out.println(x + " enqueued");
+
+        while (!s2.isEmpty()) {
+            s1.push(s2.pop());
+        }
+    }
+
+    // DEQUEUE (O(1))
+    int dequeue() {
+        if (s1.isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        return s1.pop();
+    }
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+                StackQueueDequeueFriendly q = new StackQueueDequeueFriendly();
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        System.out.println("Dequeued: " + q.dequeue());
+        System.out.println("Dequeued: " + q.dequeue());
+    }
+}
+
+    
+
